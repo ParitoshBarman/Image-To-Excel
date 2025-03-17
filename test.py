@@ -4,7 +4,8 @@ from pytesseract import pytesseract
 import pandas as pd
 pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-img = "WhatsApp Image 2024-07-28 at 2.50.47 PM.jpeg"
+# img = "jdmedical.jpg"
+img = "jdMedical2.jpg"
 image = cv2.imread(img)
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 _, threshold_image = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
@@ -18,5 +19,5 @@ for row in table_data:
  
 df = pd.DataFrame(table_data)
 df = df.applymap(lambda x: x if x.strip() != "" else pd.NA)
-output_excel_file = "testhere.xlsx"
+output_excel_file = "today.xlsx"
 df.to_excel(output_excel_file, index=False, header=False)
